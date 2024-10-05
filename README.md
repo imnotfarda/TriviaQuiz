@@ -1,4 +1,4 @@
-# React Quiz App
+# Trivia Quiz App
 
 A fun and interactive quiz application built using **React** and **TypeScript**. This app fetches quiz questions from a third-party API and allows users to answer questions, track their score, and see the correct answers. The design is responsive and uses **Tailwind CSS** for styling.
 
