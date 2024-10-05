@@ -32,9 +32,12 @@ Make sure you have **Node.js** and **npm** (or **yarn**) installed. You can down
    git clone https://github.com/yourusername/react-quiz-app.git
    cd react-quiz-app
    
-Install the dependencies:
-npm install
-Start the development server:
+2. Install the dependencies:
+   ```bash
+   npm install
 
-npm start
+3. Start the development server:
+   ```bash
+   npm start
+   
 The app will start on http://localhost:3000.
