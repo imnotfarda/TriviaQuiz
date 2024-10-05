@@ -1,11 +1,16 @@
 import React from 'react';
 import { AnswerObject } from '../App';
 
-const ButtonWrapper: React.FC<{ correct: boolean; userClicked: boolean; children: React.ReactNode }> = ({ correct, userClicked, children }) => (
+const ButtonWrapper: React.FC<{ correct: boolean; userClicked: boolean; children: React.ReactNode }> = ({
+  correct,
+  userClicked,
+  children
+}) => (
   <div
     className={`mb-3 p-2 
-      ${correct ? 'bg-green-400 border border-green-400' : ''} 
+      first-letter:first-line:
       ${userClicked && !correct ? 'bg-red-400 border border-red-400' : ''}  
+      ${correct ? 'bg-green-400 border border-green-400' : ''} 
       rounded-md shadow-md transition-all`}
   >
     {children}
@@ -38,16 +43,19 @@ const QuestionCard: React.FC<Props> = ({
       {answer.map((ans) => (
         <ButtonWrapper
           key={ans}
-          correct={userAnswer?.correctAnswer === ans} 
-          userClicked={userAnswer?.answer === ans}     
+          correct={userAnswer?.correctAnswer === ans}
+          userClicked={userAnswer?.answer === ans} 
         >
           <button
+          value={ans}  
             className={`w-full text-left p-3 rounded-md 
               ${userAnswer ? 'cursor-not-allowed' : 'hover:bg-gray-200'} 
-              ${userAnswer && ans === userAnswer.correctAnswer ? 'bg-green-400' : ''} 
-              ${userAnswer && ans !== userAnswer.correctAnswer && userAnswer.answer === ans ? 'bg-red-400' : ''} 
+              ${
+                userAnswer && ans === userAnswer.correctAnswer ? 'bg-green-400' : 
+                userAnswer && ans === userAnswer.answer && userAnswer.answer !== userAnswer.correctAnswer ? 'bg-red-400' : ''
+              } 
               focus:outline-none`}
-            disabled={!!userAnswer}
+            disabled={!!userAnswer} 
             onClick={callback}
           >
             <span className="text-gray-800" dangerouslySetInnerHTML={{ __html: ans }} />

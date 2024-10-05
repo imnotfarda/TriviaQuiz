@@ -36,38 +36,25 @@ const App = () => {
     setLoading(false);
   }
 
-  useEffect(() => {
-    console.log("Score updated:", score);
-  }, [score]); 
-
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!gameOver && !userAnswers[number]) {
-        const answer = e.currentTarget.value;
-        const correctAnswer = questions[number].correct_answer;
+      const answer = e.currentTarget.value;
+      const correctAnswer = questions[number].correct_answer;
+      const correct = correctAnswer.toLowerCase() === answer.toLowerCase();
 
-       
-        console.log("Answer chosen:", answer);
-        console.log("Correct answer:", correctAnswer);
+      if (correct) {
+        setScore((prev) => prev + 1);
+      }
 
-      
-        const correct = correctAnswer.toLowerCase() === answer.toLowerCase();
-        console.log("Is correct:", correct);  
-
-        if (correct) {
-            setScore(prev => prev + 1);  
-            console.log("Score updated to:", score + 1); 
-        }
-
-        const answerObject = {
-            question: questions[number].question,
-            answer,
-            correct,
-            correctAnswer: correctAnswer
-        };
-        setUserAnswers(prev => [...prev, answerObject]);
-        console.log("User answers updated:", [...userAnswers, answerObject]);
+      const answerObject = {
+        question: questions[number].question,
+        answer,
+        correct,
+        correctAnswer: correctAnswer,
+      };
+      setUserAnswers((prev) => [...prev, answerObject]);
     }
-};
+  };
 
   const nextQuestion = () => {
     const nextQuestion = number + 1;
@@ -80,7 +67,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-50 to-blue-100 p-6">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8 tracking-wider">REACT QUIZ</h1>
+      <h1 className="text-3xl font-bold text-gray-800 mb-8 tracking-wider">TRIVIA QUIZ</h1>
       
       {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
         <button 
